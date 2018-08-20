@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!--<node id="001" label="SIT" pid="0" value="getQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="001001" label="模板" pid="001" value="getTemplate"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="001002" label="本地队列" pid="001" value="getLocalQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="001003" label="远程队列" pid="001" value="getRemoteQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="001004" label="log" pid="001"  value="getPage" type="classtree" url="/log" loadOnDemand="true" ></node>
+    <node id="001004001" label="日志查询" pid="001004" value="10.126.53.124,QM_TEST3_GOME02,C_SVR_GOME02,1416"  type="nodepage" url="/getlogs/001001" loadOnDemand="false" ></node>
+    <node id="001001001" label="getTemplate" pid="001001"  value="10.126.53.124,QM_TEST3_GOME02,C_SVR_GOME02,1208,1416" user="mqm" pwd="mqm!2345^" type="nodetree" url="/tmp" loadOnDemand="false"></node>
+
+    <node id="001002001" label="getLocalQName" pid="001002" value="10.126.53.124,QM_TEST3_GOME02,C_SVR_GOME02,1208,1416" user="mqm" pwd="mqm!2345^"  type="nodetree" url="/get" loadOnDemand="false"></node>
+    <node id="001003001" label="getRemoteQName" pid="001003" value="10.126.53.124,QM_TEST3_GOME02,C_SVR_GOME02,1208,1416" user="mqm" pwd="mqm!2345^"  type="nodetree" url="/get" loadOnDemand="false"></node>
+    -->
+    <node id="002" label="UAT" pid="0" value="getQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="002002" label="QM_MOCK02" pid="002" value="getQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <!--<node id="002001" label="QM_MOCK01" pid="002" value="getQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+
+
+    <node id="002001001" label="模板" pid="002001" value="getTemplate"  type="classtree" url="/mq" loadOnDemand="true" svn=""></node>
+    <node id="002001002" label="本地队列" pid="002001" value="getLocalQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="002001003" label="远程队列" pid="002001" value="getRemoteQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="002001004" label="log" pid="002001"  value="getPage" type="classtree" url="/log" loadOnDemand="true" ></node>
+    <node id="002001004001" label="日志查询" pid="002001004" value="10.126.53.32,QM_MOCK01,C_SVR_GOME01,2425"  type="nodepage" url="/getlogs/002001001" loadOnDemand="false" ></node>
+    <node id="002001001001" label="getTemplate" pid="002001001"  value="10.126.53.32,QM_MOCK01,C_SVR_GOME01,1208,2425" user="mqm" pwd="mqm!2345^" type="nodetree" url="/tmp" loadOnDemand="false"></node>
+
+    <node id="002001002001" label="getLocalQName" pid="002001002" value="10.126.53.32,QM_MOCK01,C_SVR_GOME01,1208,2425" user="mqm" pwd="mqm!2345^"  type="nodetree" url="/get" loadOnDemand="false"></node>
+    <node id="002001003001" label="getRemoteQName" pid="002001003" value="10.126.53.32,QM_MOCK01,C_SVR_GOME01,1208,2425" user="mqm" pwd="mqm!2345^"  type="nodetree" url="/get" loadOnDemand="false"></node>
+
+    -->
+
+
+    <node id="002002001" label="模板" pid="002002" value="getTemplate"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="002002002" label="本地队列" pid="002002" value="getLocalQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="002002003" label="远程队列" pid="002002" value="getRemoteQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="002002004" label="log" pid="002002"  value="getPage" type="classtree" url="/log" loadOnDemand="true" ></node>
+    <node id="002002004001" label="日志查询" pid="002002004" value="10.126.53.32,QM_MOCK02,C_SVR_GOME02,2426"  type="nodepage" url="/getlogs/002002001" loadOnDemand="false" ></node>
+    <node id="002002001001" label="getTemplate" pid="002002001"  value="10.126.53.32,QM_MOCK02,C_SVR_GOME02,1208,2426" user="mqm" pwd="mqm!2345^" type="nodetree" url="/tmp" loadOnDemand="false"></node>
+
+    <node id="002002002001" label="getLocalQName" pid="002002002" value="10.126.53.32,QM_MOCK02,C_SVR_GOME02,1208,2426" user="mqm" pwd="mqm!2345^"  type="nodetree" url="/get" loadOnDemand="false"></node>
+    <node id="002002003001" label="getRemoteQName" pid="002002003" value="10.126.53.32,QM_MOCK02,C_SVR_GOME02,1208,2426" user="mqm" pwd="mqm!2345^"  type="nodetree" url="/get" loadOnDemand="false"></node>
+
+
+    <node id="003" label="T0" pid="0" value="getQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <!--<node id="002001" label="QM_MOCK01" pid="002" value="getQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>-->
+    <node id="003002" label="QM_MOCK02" pid="003" value="getQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="003002001" label="模板" pid="003002" value="getTemplate"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="003002002" label="本地队列" pid="003002" value="getLocalQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="003002003" label="远程队列" pid="003002" value="getRemoteQName"  type="classtree" url="/mq" loadOnDemand="true" ></node>
+    <node id="003002004" label="log" pid="003002"  value="getPage" type="classtree" url="/log" loadOnDemand="true" ></node>
+    <node id="003002004001" label="日志查询" pid="003002004" value="10.126.60.62,QM_GOME02,C_SVR_GOME02,3416"  type="nodepage" url="/getlogs/003002001" loadOnDemand="false" ></node>
+    <node id="003002001001" label="getTemplate" pid="003002001"  value="10.126.60.62,QM_GOME02,C_SVR_GOME02,1208,3416" user="mqm" pwd="mqm!2345^" type="nodetree" url="/tmp" loadOnDemand="false"></node>
+
+    <node id="003002002001" label="getLocalQName" pid="003002002" value="10.126.60.62,QM_GOME02,C_SVR_GOME02,1208,3416" user="mqm" pwd="mqm!2345^"  type="nodetree" url="/get" loadOnDemand="false"></node>
+    <node id="003002003001" label="getRemoteQName" pid="003002003" value="10.126.60.62,QM_GOME02,C_SVR_GOME02,1208,3416" user="mqm" pwd="mqm!2345^"  type="nodetree" url="/get" loadOnDemand="false"></node>
+
+    <node id="005" label="PRE" pid="0"  value="" type="classtree" url="/mq" loadOnDemand="true" ></node>
+
+    <!--<node id="004001" label="GET LOG" pid="004" value="getLog" type="nodetree" url="/log/search" loadOnDemand="false"></node>-->
+</root>

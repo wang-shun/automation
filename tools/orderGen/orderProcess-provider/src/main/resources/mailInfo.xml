@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="emailService" class="com.gome.test.order.process.mail.EmailService">
+    </bean>
+
+    <bean id="mailProperties"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" p:fileEncoding="UTF-8">
+        <property name="locations">
+            <list>
+                <value>classpath*:MailDetail.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="beanTalkMailInfo" class="com.gome.test.order.process.mail.EmailInfo">
+        <property name="mail_from" value="${MAIL_FROM}"/>
+        <property name="mail_head_info" value="${HEAD_INFO}"/>
+        <property name="mail_head_value" value="${HEAD_VALUE}"/>
+        <property name="username" value="${USER_NAME}"/>
+        <property name="password" value="${USER_PASS}"/>
+        <property name="personalName" value="${MAIL_FROM_NAME}"/>
+        <property name="serverHost" value="${SERVER_HOST}"/>
+        <property name="subject" value="${SUBJECT}"/>
+        <property name="toEmail" value="${SEND_TO}"/>
+        <property name="CCEmail" value="${SEND_CC}"/>
+    </bean>
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+</beans>
+

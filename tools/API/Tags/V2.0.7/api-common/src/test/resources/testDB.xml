@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <databases>
+        <database id="testDB">
+            <driver_class>com.mysql.jdbc.Driver</driver_class>
+            <url>jdbc:mysql://192.168.14.189:3306/ETP</url>
+            <username>root</username>
+            <password>root</password>
+            <sqls>
+                <sql id="sql1">
+                    <![CDATA[SELECT 'a' AS A]]>
+                </sql>
+                <sql id="sql2">
+                    <![CDATA[SELECT 'a' AS A, 'b' AS B]]>
+                </sql>
+                <sql id="sql3">
+                    <![CDATA[(SELECT 'a' AS A) UNION (SELECT 'b' AS A)]]>
+                </sql>
+                <sql id="sql4">
+                    <![CDATA[(SELECT 'a' AS A, 'b' AS B) UNION (SELECT 'c' AS A, 'd' AS B)]]>
+                </sql>
+            </sqls>
+        </database>
+    </databases>
+</configuration>

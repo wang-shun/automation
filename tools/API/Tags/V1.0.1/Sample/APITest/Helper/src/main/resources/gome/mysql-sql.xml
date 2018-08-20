@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <databases>
+        <database id="Gome.MysqlSample">
+            <sqls>
+                <sql id="query_app">
+                    select * from tbl_app where app_id=${appId}
+                </sql>
+            </sqls>
+        </database>
+    </databases>
+</configuration>

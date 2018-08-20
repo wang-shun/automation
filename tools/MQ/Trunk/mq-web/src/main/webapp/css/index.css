@@ -1,0 +1,152 @@
+body {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height:100%;
+    overflow-x: hidden ;
+    overflow-y: auto;
+    margin:0px;
+    padding:10px;
+    /*display: block;*/
+}
+
+/*The main div in each special jsp*/
+.main-div{
+    background: #ffffff;
+    -moz-opacity:0.80;
+    opacity: 0.80;
+    /*clear: both;*/
+    overflow: auto;
+    left: 0px;
+    top: 52px;
+    position: absolute;
+    height:100%;
+    width:100%;
+    display: block;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+}
+
+.special-div {
+    padding-bottom: 50px;
+}
+
+.test-filter {
+    background: #ffffff;
+    -moz-opacity:0.80;
+    opacity: 0.80;
+    height: 100%;
+}
+
+html, body, div {
+    margin:0;
+    padding:0;
+}
+
+.navbar-fixed-top {
+    border-bottom: 2px solid #3c3c3c;
+}
+
+.navbar-default
+.navbar-brand {
+    color: #428bca;
+}
+.half-trans-black{
+
+}
+
+.half-trans-green{
+}
+
+.half-color-header{
+    padding: 15px;
+}
+.half-color-header h2,
+.half-color-header h3{
+    color: #000;
+    text-align: center;
+}
+
+.noborder-input {
+    border: 0;
+}
+
+.table-div {
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.half-color-header td label {
+    font-size: 150%;
+    color: #000;
+}
+
+.filter_table td{
+    padding: 10px;
+}
+.filter_div h2 {
+    text-align: center;
+}
+
+.error-span {
+    color: red;
+}
+
+.modal-detail-span {
+    text-align: center;
+}
+
+.filter-td {
+    width: 250px;
+}
+
+.nav-login-a {
+    font-size: large;
+}
+
+.navbar .nav > li .dropdown-menu {
+    margin: 0;
+}
+.navbar .nav > li:hover .dropdown-menu {
+    display: block;
+}
+
+
+#editor-container {
+    width: 510px;
+    height: 360px;
+    padding: 0px 20px 10px 0px;
+}
+
+a:link {
+    font-size: 10pt;
+    color: #0000cc;
+    font-family: 宋体;
+    text-align: left;
+    text-decoration: underline;
+    TEXT-DECORATION:none;
+}
+
+a:visited {
+    font-size: 9pt;
+    color: #0000cc;
+    font-family: 宋体;
+    text-align: left;
+    text-decoration: underline;
+    TEXT-DECORATION:none;
+}
+
+a:hover {
+    color: #993300;
+    text-decoration: underline;
+    TEXT-DECORATION:none;
+    cursor:pointer;
+}
+
+a:active {
+    color: #ff0033;
+    text-decoration: none;
+}

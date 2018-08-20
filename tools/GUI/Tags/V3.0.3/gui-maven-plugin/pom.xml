@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>gui-maven-plugin</artifactId>
+    <packaging>maven-plugin</packaging>
+    <name>GUI Maven-Plugin</name>
+
+    <parent>
+        <groupId>com.gome.test.gui</groupId>
+        <artifactId>gui</artifactId>
+        <version>3.0.3</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>com.gome.test</groupId>
+            <artifactId>testng-utility</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gome.test</groupId>
+            <artifactId>plugin-utility</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gome.test.api</groupId>
+            <artifactId>api-ide</artifactId>
+            <version>RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpclient</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+</project>

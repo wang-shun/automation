@@ -1,0 +1,75 @@
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<title>无标题文档</title>
+
+<script language="JavaScript" type="text/JavaScript">
+
+
+
+function showhidediv(id){
+
+var age=document.getElementById("msg_2");
+
+var name=document.getElementById("msg_1");
+
+if (id == 'name') {
+
+   if (name.style.display=='none') {
+
+    age.style.display='none';
+
+    name.style.display='block';
+
+   }
+
+} else {
+
+   if (age.style.display=='none') {
+
+    name.style.display='none';
+
+    age.style.display='block';
+
+   }
+
+}   
+
+}
+
+
+
+</script>
+
+</head>
+
+<body>
+
+<div id="msg_1" style="display:block;float:left;" onclick='showhidediv("age")';>
+
+<p id="photoTitle" >单击此处添加描述</p></div>
+
+<div id="msg_2" style="display:none;float:left;" >
+
+<form id="form2">
+
+<textarea class="textarea" id="" name=""></textarea>
+
+<div class="">
+
+<input type="button" value="保存" class="ddd" id="sav3">
+
+<input type="button" value="取消" class="" id="sav43" onclick='showhidediv("name")';>
+
+</div>
+
+<input type="hidden" name="" value=""></form>
+
+</div>
+
+</body>
+
+</html>

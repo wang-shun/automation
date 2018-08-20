@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ofo.test.api</groupId>
+    <artifactId>api-maven-plugin</artifactId>
+    <name>API Framework Maven Plugin</name>
+    <!--<version>3.0.9</version>-->
+    <packaging>maven-plugin</packaging>
+    <parent>
+        <groupId>com.ofo.test.api</groupId>
+        <artifactId>api</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.ofo.test</groupId>
+            <artifactId>testng-utility</artifactId>
+            <version>1.0.0</version>
+            <!--修改版本-->
+        </dependency>
+        <dependency>
+            <groupId>com.ofo.test</groupId>
+            <artifactId>plugin-utility</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                        <groupId>com.ofo.test</groupId>
+                        <artifactId>utility</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.ofo.test.api</groupId>
+            <artifactId>api-ide</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.ofo.test</groupId>
+                    <artifactId>utility</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.2</version>
+                <executions/>
+                <configuration>
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

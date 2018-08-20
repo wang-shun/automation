@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="mailInfo.xml"></import>
+    <bean id="mailJobs" class="com.gome.test.order.process.schedule.MailJob"/>
+    <bean id="cronTriggerSendMail"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="runSendMailJob"/>
+        <property name="cronExpression" value="0 0/2 * * * ?"/>
+    </bean>
+    <bean id="runSendMailJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="mailJobs"/>
+        <property name="targetMethod" value="sendMail"/>
+    </bean>
+
+    <bean id="simpleTriggerMail"
+          class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+
+        <property name="jobDetail" ref="runSendMailJob"/>
+        <property name="repeatInterval" value="1000"/>
+        <property name="startDelay" value="1000"/>
+    </bean>
+
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <!--<ref bean="runJob" />-->
+                <ref bean="runSendMailJob"/>
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <!--<ref bean="cronTrigger" />-->
+                <ref bean="cronTriggerSendMail"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <!--3PPorderJob-->
+    <bean id="order" class="com.gome.test.order.process.schedule.ProcessOrderJob"/>
+
+    <!--配置作业-->
+    <bean id="orderjob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="order"/>
+        <property name="targetMethod" value="processOrder"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <!--配置调度规则-->
+    <bean id="triggercron" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="orderjob"/>
+        <property name="cronExpression" value="0/30 * * * * ?"/>
+    </bean>
+    <!--配置调度器-->
+    <bean id="startQuertz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers" ref="triggercron"/>
+    </bean>
+
+<!--    &lt;!&ndash;配置自动生成订单并插入到队列&ndash;&gt;
+    <bean id="genOrder" class="com.gome.test.order.process.schedule.ProcessOrderJob"/>
+    &lt;!&ndash;配置作业&ndash;&gt;
+    <bean id="genOrderJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="genOrder"/>
+        <property name="targetMethod" value="test"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    &lt;!&ndash;配置调度规则&ndash;&gt;
+    <bean id="triggercronGenorder" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="genOrderJob"/>
+        <property name="cronExpression" value="0 0 0/2 * * ?"/>
+    </bean>
+    &lt;!&ndash;配置调度器&ndash;&gt;
+    <bean id="genOrderstartQuertz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers" ref="triggercronGenorder"/>
+    </bean>-->
+
+
+    <!--配置erm系统登录-->
+    <bean id="login" class="com.gome.test.order.process.util.GUI"/>
+    <bean id="loginJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="login"/>
+        <property name="targetMethod" value="guiLogin"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="triggercronLogin" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="loginJob"/>
+        <property name="cronExpression" value="0 0/20 * * * ?"/>
+    </bean>
+    <bean id="loginJobstartQuertz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers" ref="triggercronLogin"/>
+    </bean>
+
+</beans>

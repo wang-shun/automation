@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mq-web</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>mq-web</name>
+
+
+    <parent>
+        <groupId>com.gome.test.mq</groupId>
+        <artifactId>mq-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <start-class>com.gome.test.mq.Application</start-class>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>commonservices</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>defaultconfig</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>dhbcore</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>fta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>headers</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>java</classifier>
+            <type>jms.jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>jmqi</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>jms</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>jta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>mq</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>mqbind</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>mqetclient</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>mqjms</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>pcf</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>postcard</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>soap</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <classifier>tools</classifier>
+        </dependency>
+        <dependency>
+            <groupId>ibm.mq</groupId>
+            <artifactId>ibm-mq</artifactId>
+            <version>1.0</version>
+            <type>pom</type>
+        </dependency>
+
+
+
+
+
+
+        <dependency>
+            <groupId>com.ibm.mq</groupId>
+            <artifactId>com-ibm-mq</artifactId>
+            <version>6.0.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.resource</groupId>
+            <artifactId>javax.resource-api</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>javax.resource</groupId>-->
+            <!--<artifactId>connector</artifactId>-->
+            <!--<version>1.5</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.ibm.mq</groupId>-->
+            <!--<artifactId>connector</artifactId>-->
+            <!--<version>1.3.0</version>-->
+        <!--</dependency>-->
+
+
+        <dependency>
+            <groupId>com.gome.test.mq</groupId>
+            <artifactId>mq-domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+
+
+
+
+
+
+
+
+
+        <!--other dependencies-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>8.0.15</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>xmltooling</artifactId>
+            <version>1.4.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>1.4.01</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

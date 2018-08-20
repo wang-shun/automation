@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>@groupId@</groupId>
+  <artifactId>@artifactId@</artifactId>
+  <version>@version@</version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.17</version>
+        <configuration>
+          <disableXmlReport>true</disableXmlReport>
+          <useFile>false</useFile>
+          <properties>
+            <property>
+              <name>usedefaultlisteners</name>
+              <value>false</value>
+            </property>
+            <property>
+              <name>listener</name>
+              <value>com.ofo.test.testng.SkipOnceFailListener,com.ofo.test.testng.JAPIReporter</value>
+            </property>
+          </properties>
+          <suiteXmlFiles/>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

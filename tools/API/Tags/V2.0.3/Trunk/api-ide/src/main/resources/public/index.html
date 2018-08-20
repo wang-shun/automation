@@ -1,0 +1,1293 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="基于关键字、数据驱动的SpringMVC测试框架编辑器">
+    <title>WebIDE</title>
+    <!-- jsoneditor -->
+    <link rel="stylesheet" type="text/css"
+          href="assets/jsoneditor/jsoneditor-min.css"/>
+    <!-- jqTree -->
+    <link rel="stylesheet" type="text/css"
+          href="assets/jqTree-0.20.0/jqtree.css"/>
+
+    <!-- perfect-scrollbar -->
+    <link rel="stylesheet" type="text/css"
+          href="assets/perfect-scrollbar/perfect-scrollbar.min.css"/>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css"
+          href="assets/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="assets/bootstrap/css/bootstrap-responsive.min.css"/>
+    <!-- bootstrap-modal -->
+    <link rel="stylesheet" type="text/css"
+          href="assets/bootstrap-modal/css/bootstrap-modal.css"/>
+
+    <link rel="stylesheet" type="text/css" href="assets/multi-select/css/multi-select.css"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="assets/html5shiv/html5shiv.min.js">
+    </script>
+    <script type="text/javascript" src="assets/respond/respond.min.js">
+    </script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- navigation bar -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse"
+                    data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="javascript:void(0);">WebIDE</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                     <li>
+                        <a id="nav-update-workbench" href="javascript:void(0);">
+                            更新用例
+                        </a>
+                    </li>
+                    <!--<li>-->
+                        <!--<a id="nav-commit-workbench" href="javascript:void(0);">-->
+                            <!--提交用例-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <li>
+                        <a id="nav-compile-workbench" href="javascript:void(0);">
+                            编译工程
+                        </a>
+                    </li>
+                    <li>
+                        <a id="nav-wiki" href="http://wiki.ds.gome.com.cn/pages/viewpage.action?pageId=3670565" target="_blank">
+                            Wiki地址
+                        </a>
+                    </li>
+                    <li>
+                        <a id="nav-shutdown" href="javascript:void(0);">
+                            退出服务
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main container -->
+<div id="main-container">
+    <!-- sidebar -->
+    <div id="sidebar">
+        <ul class="nav nav-tabs" id="sidebar-menu" style="padding-right: 30px;">
+            <li class="active">
+                <a id="case-tree-tab" data-toggle="tab" href="javascript:void(0);#case-tree">用例树</a>
+            </li>
+            <li>
+                <a id="dir-tree-tab" data-toggle="tab" href="javascript:void(0);#dir-tree">目录树</a>
+            </li>
+            <li class="pull-right hide"
+                id="menu-rename-node"
+                style="margin-top: 10px; margin-left: 30px;"
+                data-placement="bottom"
+                data-toggle="tooltip"
+                data-trigger="hover"
+                data-original-title="重命名节点">
+                <span class="icon-eye-open"></span>
+            </li>
+            <li class="pull-right hide"
+                id="menu-delete-node"
+                style="margin-top: 10px; margin-left: 30px;"
+                data-placement="bottom"
+                data-toggle="tooltip"
+                data-trigger="hover"
+                data-original-title="删除节点">
+                <span class="icon-trash"></span>
+            </li>
+            <li class="pull-right dropdown"
+                id="new-node"
+                style="margin-top: 10px;margin-left: 30px;"
+                data-placement="bottom"
+                data-toggle="tooltip"
+                data-trigger="hover"
+                data-original-title="新增节点">
+            <span class="icon-plus dropdown-toggle"
+                  data-toggle="dropdown">
+            </span>
+                <ul class="dropdown-menu" id="menu-add-node">
+                    <li id="menu-add-folder">
+                        <a href="#modal-new-folder" data-toggle="modal">
+                            <span class="icon-folder-close"></span>&nbsp;添加文件夹
+                        </a>
+                    </li>
+                    <li class="hide" id="menu-add-file">
+                        <a href="#modal-new-file" data-toggle="modal">
+                            <span class="icon-file"></span>&nbsp;新增excel文件
+                        </a>
+                    </li>
+                    <li class="hide" id="menu-add-suite">
+                        <a href="#modal-new-suite" data-toggle="modal">
+                            <span class="label label-info">suite</span>&nbsp;新增testsuites
+                        </a>
+                        <!--added by zonglin.li-->
+                        <a href="#modal-new-dev-suite" data-toggle="modal">
+                            <span class="label label-info">suite</span>&nbsp;新增testsuites-for-dev
+                        </a>
+                        <!--added by shan.tan-->
+                        <a href="#modal-new-paramized-suite-template" data-toggle="modal">
+                            <span class="label label-warning">suite</span>&nbsp;新增p-suites-tpl
+                        </a>
+                        <a href="#modal-new-paramized-suite" data-toggle="modal">
+                            <span class="label label-warning">suite</span>&nbsp;新增p-suites
+                        </a>
+
+                    </li>
+                    <li class="hide" id="menu-add-case">
+                        <a href="#modal-new-case" data-toggle="modal">
+                            <span class="label label-success">case</span>&nbsp;新增case
+                        </a>
+                    </li>
+                    <li class="hide" id="menu-add-order-suite">
+                        <a href="#modal-new-order-suite" data-toggle="modal">
+                            <span class="label label-success">case</span>&nbsp;新增ordersuite
+                        </a>
+                    </li>
+                    <li class="hide" id="menu-add-order-case">
+                        <a href="#modal-new-order-case" data-toggle="modal">
+                            <span class="label label-success">case</span>&nbsp;新增ordercase
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="tab-content" id="sidebar-data">
+            <div class="tab-pane active" id="case-tree">
+                <div id="case-tree-data">
+                </div>
+            </div>
+            <div class="tab-pane" id="dir-tree">
+                <div id="dir-tree-data">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- separator line -->
+    <div id="separator-line">
+    </div>
+    <!-- main panel -->
+    <div id="main-panel">
+        <ul class="nav nav-tabs" id="main-panel-menu">
+            <li class="active">
+                <a data-toggle="tab" href="#editor-panel" id="main-panel-case">用例</a>
+            </li>
+            <li class="pull-right btn-group" style="padding-right: 20px;">
+                <button class="btn collapsed" id="btn-setup" type="button"
+                        data-toggle="collapse" data-target="#setup-section">
+                    <span class="icon-edit" style="padding-right: 3px;"></span>SetUp
+                </button>
+                <button class="btn collapsed" id="btn-teardown" type="button"
+                        data-toggle="collapse" data-target="#teardown-section">
+                    <span class="icon-edit" style="padding-right: 3px;"></span>TearDown
+                </button>
+            </li>
+            <li class="pull-right" style="margin-right: 20px;">
+                <button class="btn hide" id="btn-copy" type="button" data-clipboard-text="null">
+                    <span class="icon-bookmark" style="padding-right: 3px;"></span>Copy
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="main-panel-data">
+            <div class="tab-pane active" id="editor-panel">
+                <!-- caseid -->
+                <div class="form-inline hide" id="caseId">
+                    <h4 class="pull-left" style="padding-right: 5px;">用例编号</h4>
+                    <input class="span6 input-text-light" id="caseIdEdit" type="text"
+                           value="" placeholder="用例编号"/>
+                    <hr/>
+                </div>
+
+                <!-- Variable Writable Section -->
+                <div class="hide" id="variable-writeble-section">
+                    <div class="row" style="margin-left: 0px; margin-top: 10px;">
+                        <h4 class="pull-left" style="margin-top: 4px;">Variables</h4>
+
+                        <div class="btn-group">
+                            <button class="btn collapsed" id="btn-add-variable" type="button"
+                                    data-toggle="collapse">
+                                <span class="icon-edit" style="padding-right: 3px;"></span>Add
+                            </button>
+                        </div>
+                    </div>
+                    <ul id="variables-writable" class="ui-sortable">
+                        <li class="hide" id="variables-writable-template">
+                            <span class="icon-th"></span>
+                            <span class="badge">0</span>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="Name Value Pair Key" data-key>
+                            <span>&nbsp;</span>
+
+                            <div class="input-append">
+                                <input type="text" value="" class="input-text-light"
+                                       placeholder="Name Value Pair Value" data-value>
+                            </div>
+                            <span>&nbsp;</span>
+                  <span class="icon-remove"
+                        data-placement="right"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-original-title="remove header">
+                  </span>
+
+                            <div class="hide help" contenteditable="true" data-doc></div>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+
+                <!--P-Cases Section -->
+                <div class="hide" id="p-cases-section">
+                    <div class="row" style="margin-left: 0px; margin-top: 10px;">
+                        <h4 class="pull-left" style="margin-top: 4px;">Cases</h4>
+                    </div>
+                    <table class="table table-striped table-bordered" id="p-cases">
+                        <tr>
+                            <th>caseId</th>
+                            <th>caseName</th>
+                            <th>${name}</th>
+                            <th>${email}</th>
+                            <th>${phonenumber}</th>
+                            <th>${buildId}</th>
+                        </tr>
+                        <tr class="hide" id="tr-template">
+                            <td>test2_1415935769554</td>
+                            <td>test1</td>
+                            <th>shan.tan</th>
+                            <th>shan.tan@corp.elong.com</th>
+                            <th>13718804900</th>
+                            <th>25</th>
+                        </tr>
+                        <tr>
+                            <td>test2_1415947078806</td>
+                            <td>查看不同的交易人的情况下的case运行情况</td>
+                            <th>lisi</th>
+                            <th>lisi@qq.com</th>
+                            <th>13517055612</th>
+                            <th>23</th>
+                        </tr>
+                    </table>
+                    <hr/>
+                </div>
+
+                <!-- SetUp Section -->
+                <div class="collapse" id="setup-section">
+                    <div class="row" style="margin-left: 0px; margin-top: 10px;">
+                        <h4 class="pull-left" style="margin-top: 4px;">SetUp</h4>
+                        <input class="span3 input-text-light"
+                               id="input-setup-class-name"
+                               type="text"
+                               placeholder="SetUp类名"
+                               value="com.gome.test.api.environment.EnvManager"
+                               style="margin-left: 20px; margin-top: -6px;display:inline">
+
+                        <div class="dropdown" style="display:inline-block">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                               href="javascript:void(0);"
+                               style="margin-left: 20px;">
+                                add<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" id="menu-setup">
+                                <li class="hide" id="setup-menu-template">
+                                    <a href="javascript:void(0);"
+                                       data-content="template menu description"
+                                       rel="popover" data-original-title="Description"
+                                       data-placement="left" data-container="body">menu</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul id="setUpSteps" class="ui-sortable">
+                        <li class="hide" id="setup-step-template">
+                            <span class="icon-th"></span>
+                            <span class="badge">0</span>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="method" data-keyword>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="" data-arg
+                                   style="margin-right: 5px;">
+                  <span class="icon-remove"
+                        data-placement="right"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-original-title="remove step">
+                  </span>
+
+                            <div class="hide help" contenteditable="true" data-doc></div>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+
+                <!-- request -->
+                <div class="form-inline" id="request">
+                    <h4 class="pull-left" style="padding-right: 5px;">Request</h4>
+                    <input class="span5 input-text-light" id="url" type="text"
+                           value="" placeholder="HTTP URL">
+                    <!-- Http Method -->
+                    <select id="method">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                    <!-- Http Headers -->
+                    <button class="btn collapsed" id="btn-headers"
+                            data-toggle="collapse" data-target="#headers-section">
+                        <span class="icon-edit" style="padding-right: 3px;"></span>Headers
+                    </button>
+                    <!-- Http Url Params -->
+                    <button class="btn collapsed" id="btn-url-params"
+                            data-toggle="collapse"
+                            data-target="#url-params-section">
+                        <span class="icon-edit" style="padding-right: 3px;"></span>URL Params
+                    </button>
+                    <button class="btn collapsed" id="btn-verifies"
+                            data-toggle="collapse" data-target="#verifies-section">
+                        <span class="icon-edit" style="padding-right: 3px;"></span>Verifies
+                    </button>
+
+                    <hr/>
+                </div>
+                <!-- Headers Input Section -->
+                <div class="collapse" id="headers-section">
+                    <div class="row" style="margin-left: 0px;">
+                        <h5 class="pull-left">Headers</h5>
+                        <span>&nbsp;</span>
+
+                        <div style="margin-top: 9px; margin-left: 20px;"
+                             class="pull-left">
+                            <a id="link-add-header" href="javascript:void(0);">(add)</a>
+                        </div>
+                    </div>
+                    <ul id="headers" class="ui-sortable">
+                        <li class="hide" id="header-template">
+                            <span class="icon-th"></span>
+                            <span class="badge">0</span>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="Header Key" data-key>
+                            <span>&nbsp;</span>
+
+                            <div class="input-append">
+                                <input type="text" value="" class="input-text-light"
+                                       placeholder="Header Value" data-value>
+                    <span class="add-on-inline dropdown-toggle"
+                          data-toggle="dropdown">
+                      <i class="icon-pencil"></i>
+                    </span>
+                            </div>
+                            <!--comments column added by zonglin.li-->
+                            <div class="input-append">
+                                <input type="text" value="" class="input-text-light"
+                                       placeholder="Comments" data-comments>
+                    <span class="add-on-inline dropdown-toggle"
+                          data-toggle="dropdown">
+                      <i class="icon-pencil"></i>
+                    </span>
+                            </div>
+
+                            <span>&nbsp;</span>
+                            <select data-encryption>
+                                <option value="NONE">明文</option>
+                                <option value="AES">AES加密</option>
+                            </select>
+                            <span>&nbsp;</span>
+                            <input type="hidden" value="1234567890123456"
+                                   class="input-text-light" data-secret>
+                            <span>&nbsp;</span>
+                  <span class="icon-remove"
+                        data-placement="right"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-original-title="remove header">
+                  </span>
+
+                            <div class="hide help" contenteditable="true" data-doc></div>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+
+                <!-- URL Params Input Section -->
+                <div class="collapse" id="url-params-section">
+                    <div class="row" style="margin-left: 0px;">
+                        <h5 class="pull-left">URL Params</h5>
+                        <span>&nbsp;</span>
+
+                        <div style="margin-top: 9px; margin-left: 20px;"
+                             class="pull-left">
+                            <a id="link-add-url-param" href="javascript:void(0);">(add)</a>
+                        </div>
+                    </div>
+                    <ul id="url-params" class="ui-sortable">
+                        <li class="hide" id="url-param-template">
+                            <span class="icon-th"></span>
+                            <span class="badge">0</span>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="URL Param Key" data-key>
+                            <span>&nbsp;</span>
+
+                            <div class="input-append">
+                                <input type="text" value="" class="input-text-light"
+                                       placeholder="URL Param Value" data-value>
+                    <span class="add-on-inline dropdown-toggle"
+                          data-toggle="dropdown">
+                      <i class="icon-pencil"></i>
+                    </span>
+                            </div>
+
+                            <!--comments column for url params added by zonglin.li-->
+                            <div class="input-append">
+                                <input type="text" value="" class="input-text-light"
+                                       placeholder="Comments" data-comments>
+                    <span class="add-on-inline dropdown-toggle"
+                          data-toggle="dropdown">
+                      <i class="icon-pencil"></i>
+                    </span>
+                            </div>
+
+
+                            <span>&nbsp;</span>
+                            <select data-encryption>
+                                <option value="NONE">明文</option>
+                                <option value="AES">AES加密</option>
+                            </select>
+                            <span>&nbsp;</span>
+                            <input type="hidden" value="1234567890123456"
+                                   class="input-text-light" data-secret>
+                            <span>&nbsp;</span>
+                  <span class="icon-remove"
+                        data-placement="right"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-original-title="remove url param">
+                  </span>
+
+                            <div class="hide help" contenteditable="true" data-doc></div>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+
+                <!-- Entity Input Section -->
+                <div class="hide" id="entity-section">
+                    <div class="row" style="margin-left: 0px;">
+                        <h5 class="pull-left" style="margin-top: 4px;">Entity</h5>
+                        <span>&nbsp;</span>
+
+                        <div class="pull-left" style="margin-left: 20px;">
+                            <div class="btn-group" id="entity-menu" data-toggle="buttons-radio">
+                                <button type="button" class="btn active">
+                                    x-www-form-urlencoded
+                                </button>
+                                <button type="button" class="btn">raw</button>
+                            </div>
+                        </div>
+                        <div id="entity-option" style="margin-top: 6px; margin-left: 20px;"
+                             class="pull-left">
+                            <a id="link-add-entity" href="javascript:void(0);">(add)</a>
+                        </div>
+                    </div>
+                    <ul id="entity-x-www-form-urlencoded" class="ui-sortable">
+                        <li class="hide" id="entity-template">
+                            <span class="icon-th"></span>
+                            <span class="badge">0</span>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="Name Value Pair Key" data-key>
+                            <span>&nbsp;</span>
+
+                            <div class="input-append">
+                                <input type="text" value="" class="input-text-light"
+                                       placeholder="Name Value Pair Value" data-value>
+                    <span class="add-on-inline dropdown-toggle"
+                          data-toggle="dropdown">
+                      <i class="icon-pencil"></i>
+                    </span>
+                            </div>
+
+                            <!--comments column for entity added by zonglin.li-->
+                            <div class="input-append">
+                                <input type="text" value="" class="input-text-light"
+                                       placeholder="Comments" data-comments>
+                    <span class="add-on-inline dropdown-toggle"
+                          data-toggle="dropdown">
+                      <i class="icon-pencil"></i>
+                    </span>
+                            </div>
+
+                            <span>&nbsp;</span>
+                            <select data-encryption>
+                                <option value="NONE">明文</option>
+                                <option value="AES">AES加密</option>
+                            </select>
+                            <span>&nbsp;</span>
+                            <input type="hidden" value="1234567890123456"
+                                   class="input-text-light" data-secret>
+                            <span>&nbsp;</span>
+                  <span class="icon-remove"
+                        data-placement="right"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-original-title="remove entity">
+                  </span>
+
+                            <div class="hide help" contenteditable="true" data-doc></div>
+                        </li>
+                    </ul>
+                    <div id="entity-raw" class="hide"></div>
+                    <hr/>
+                </div>
+
+                <!-- Verifies Input Section -->
+                <div class="collapse" id="verifies-section">
+                    <div class="row" style="margin-left: 0px;">
+                        <h5 class="pull-left" style="margin-top: 4px;">Verifies</h5>
+                        <input class="span3 input-text-light"
+                               id="input-verify-class-name"
+                               type="text"
+                               placeholder="验证类"
+                               value="com.gome.test.api.verify.JsonVerify"
+                               style="margin-left: 20px; margin-top: -6px;display:inline">
+
+                        <div class="dropdown" style="display:inline-block">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                               href="javascript:void(0);"
+                               style="margin-left: 20px;">
+                                add<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" id="menu-verify">
+                                <li class="hide" id="verify-menu-template">
+                                    <a href="javascript:void(0);"
+                                       data-content="template menu description"
+                                       rel="popover" data-original-title="Description"
+                                       data-placement="left" data-container="body">menu</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul id="verifySteps" class="ui-sortable">
+                        <li class="hide" id="verify-step-template">
+                            <span class="icon-th"></span>
+                            <span class="badge">0</span>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="method" data-keyword>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="" data-arg
+                                   style="margin-right: 5px;">
+                  <span class="icon-remove"
+                        data-placement="right"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-original-title="remove step">
+                  </span>
+
+                            <div class="hide help" contenteditable="true" data-doc></div>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+
+                <!-- TearDown section -->
+                <div class="collapse" id="teardown-section">
+                    <div class="row" style="margin-left: 0px; margin-top: 10px;">
+                        <h4 class="pull-left" style="margin-top: 4px;">TearDown</h4>
+                        <input class="span3 input-text-light"
+                               id="input-teardown-class-name"
+                               type="text"
+                               placeholder="TearDown类名"
+                               value="com.gome.test.api.environment.EnvManager"
+                               style="margin-left: 20px; margin-top: -6px;display:inline">
+
+                        <div class="dropdown" style="display:inline-block">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                               href="javascript:void(0);"
+                               style="margin-left: 20px;">
+                                add<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" id="menu-teardown">
+                                <li class="hide" id="teardown-menu-template">
+                                    <a href="javascript:void(0);"
+                                       data-content="template menu description"
+                                       rel="popover" data-original-title="Description"
+                                       data-placement="left" data-container="body">menu</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul id="tearDownSteps" class="ui-sortable">
+                        <li class="hide" id="teardown-step-template">
+                            <span class="icon-th"></span>
+                            <span class="badge">0</span>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="method" data-keyword>
+                            <input type="text" value="" class="input-text-light"
+                                   placeholder="" data-arg
+                                   style="margin-right: 5px;">
+                  <span class="icon-remove"
+                        data-placement="right"
+                        data-toggle="tooltip"
+                        data-trigger="hover"
+                        data-original-title="remove step">
+                  </span>
+
+                            <div class="hide help" contenteditable="true" data-doc></div>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+
+                <!-- button section -->
+                <div class="row" style="margin-left: 0px" id="btn-div">
+                    <div class="pull-left">
+                        <button class="btn btn-primary hide" id="btn-save-case">
+                            保存
+                        </button>
+                        <button class="btn btn-info" id="btn-send-request">
+                            发送
+                        </button>
+                        <button class="btn btn-success hide" id="btn-run">
+                            运行
+                        </button>
+                    </div>
+                </div>
+                <hr/>
+                <!--<div id="responseSection" class="container-fluid" style="margin-left: 0px">-->
+                <div class="row-fluid hide" id="responseSection" style="margin-bottom: 20px">
+                    <div id="localResponse" class="hide">
+                        <div id="localSpan" class="span5" style="margin-bottom: 20px">
+                            <div><h4>Local Response</h4></div>
+                            <div id="responseCopy" style="margin-left: 0px">
+                            </div>
+                            <hr/>
+                            <div class="row-fluid" style="margin-top: 5px">
+                                <button class="btn btn-primary" id="btn-load-response" type="button">
+                                    <span class="icon-arrow-up"></span>加载Response
+                                </button>
+                                <button class="btn btn-primary" id="btn-save-response" type="button">
+                                    <span class="icon-file"></span>保存Response
+                                </button>
+                                <hr/>
+                            </div>
+                        </div>
+                        <div id="copy-response-btn">
+                            <div class="span1">
+                                <button class="btn btn-primary" id="btn-copy-response" type="button"
+                                        style="margin-top: 150px; margin-left: 15px">
+                                    <span class="icon-arrow-left"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="currentResponse">
+                        <div id="currentSpan" class="span5" style="margin-bottom: 20px">
+                            <div><h4>Current Response</h4></div>
+                            <div id="response" style="margin-left: 0px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--</div>-->
+
+                <!--added by zonglin.li-->
+
+                <!-- ordercase的多选按钮 -->
+                <div class="container-fluid hide" id="multi-select">
+                    <div class="form-inline">
+                        <h4 class="pull-left" style="padding-right: 5px;">用例编号</h4>
+                        <input class="span6 input-text-light" id="order-case-id" type="text" value=""
+                               placeholder="用例编号">
+                        <label class="checkbox">
+                            <input type="checkbox" id="order-case-continue" style="padding-right: 5px;">ContinueAfterFailure
+                        </label>
+                    </div>
+                    <hr/>
+                    <div class="form-inline">
+                        <div>
+                            <select multiple="multiple" id="select-modules">
+                                <option value="1">Sample1</option>
+                                <option value="2">Sample2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-inline">
+                        <button id="btn-save-order-case" class="btn btn-large btn-primary" data-loading-text="保存中...">
+                            保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for text/json/xml editor -->
+    <div class="modal hide" id="modal-editor" role="dialog"
+         aria-hidden="false" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <div class="row" style="margin-left: 0px">
+                <h4 class="pull-left">编辑</h4>
+
+                <div class="pull-right" style="margin-top: 10px;">
+                    <input value="text" type="radio" name="editor-manner"
+                           style="margin-top: 0px;" checked>
+                    <span>text</span>
+                    <span>&nbsp;</span>
+                    <input value="json" type="radio" name="editor-manner"
+                           style="margin-top: 0px;">
+                    <span>json</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div id="editor-container">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                取消
+            </button>
+            <button class="btn btn-primary" id="btn-save-text"
+                    data-dismiss="modal" aria-hidden="true">
+                保存
+            </button>
+        </div>
+    </div>
+
+    <!-- modal for waiting for background processing -->
+    <div class="modal hide" id="modal-loading" role="dialog"
+         aria-hidden="false" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header" style="text-align:center">
+            <h3>后台处理中</h3>
+        </div>
+        <div class="modal-body" style="text-align:center">
+            <span>请耐心等待...</span>
+        </div>
+    </div>
+
+    <!-- modal for new folder -->
+    <div class="modal hide fade" id="modal-new-folder" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建文件夹</h3>
+        </div>
+        <div class="modal-body">
+            <div>
+                <input class="input-text-light span5" id="folder"
+                       type="text" value=""
+                       placeholder="文件夹名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-new-folder" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- modal for new file -->
+    <div class="modal hide fade" id="modal-new-file" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建Excel</h3>
+        </div>
+        <div class="modal-body">
+            <div class="input-append">
+                <input class="input-text-light span5" id="excelName" value=""
+                       type="text" placeholder="Excel名称">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              .xlsx
+            </span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-new-file" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- modal for new testsuite -->
+    <div class="modal hide fade" id="modal-new-suite" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建Suite</h3>
+        </div>
+        <div class="modal-body">
+            <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              testsuites
+            </span>
+                <input class="input-text-light span5" id="testsuite" type="text"
+                       value="" placeholder="Suite名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-new-suite" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+
+    <!--added by shan.tan-->
+    <!-- modal for p-testsuite-template -->
+    <div class="modal hide fade" id="modal-new-paramized-suite-template" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建P-Suite-Template</h3>
+        </div>
+        <div class="modal-body">
+            <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              p-suites-tpl-
+            </span>
+                <input class="input-text-light span5" id="p-testsuites-template" type="text"
+                       value="" placeholder="Suite名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-new-p-suite-tempalte" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- modal for p-testsuite -->
+    <div class="modal hide fade" id="modal-new-paramized-suite" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建P-Suite</h3>
+        </div>
+        <div class="modal-body">
+            <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              p-suites-
+            </span>
+                <input class="input-text-light span5" id="p-testsuites" type="text"
+                       value="" placeholder="Suite名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-new-p-suite" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+
+
+    <!--added by zonglin.li-->
+
+    <!-- modal for new dev testsuite -->
+    <div class="modal hide fade" id="modal-new-dev-suite" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建Suite</h3>
+        </div>
+        <div class="modal-body">
+            <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              testsuitesForDev
+            </span>
+                <input class="input-text-light span4" id="testsuite-for-dev" type="text"
+                       value="" placeholder="Suite名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-new-dev-suite" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- modal for new case -->
+    <div class="modal hide fade" id="modal-new-case" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建用例</h3>
+        </div>
+        <div class="modal-body">
+            <div>
+                <input class="input-text-light span5" id="caseName" type="text"
+                       value="" placeholder="用例名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-save-new" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- modal for new order case -->
+    <div class="modal hide fade" id="modal-new-order-case" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建OrderCase</h3>
+        </div>
+        <div class="modal-body">
+            <div>
+                <input class="input-text-light span5" id="ordercaseName" type="text"
+                       value="" placeholder="用例名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-save-new-order-case" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- modal for new order suite -->
+    <div class="modal hide fade" id="modal-new-order-suite" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>新建OrderSuite</h3>
+        </div>
+        <div class="modal-body">
+            <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              OrderList
+            </span>
+                <input class="input-text-light span5" id="ordersuite" type="text"
+                       value="" placeholder="OrderSuite名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-new-order-suite" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>新建</span>
+            </button>
+        </div>
+    </div>
+    <!-- modal for modify order case -->
+    <div class="modal hide fade" id="modal-rename-order-case" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>修改用例名</h3>
+        </div>
+        <div class="modal-body">
+            <div>
+                <input class="input-text-light span5" id="oldOrderCaseName" type="text"
+                       value="" placeholder="旧用例名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-rename-order-case" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>确定</span>
+            </button>
+        </div>
+    </div>
+    <!-- modal for modify order suite -->
+    <div class="modal hide fade" id="modal-rename-order-suite" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>修改OrderSuite</h3>
+        </div>
+        <div class="modal-body">
+            <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              OrderList
+            </span>
+                <input class="input-text-light span5" id="oldOrderSuiteName" type="text"
+                       value="" placeholder="OrderSuite名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-rename-order-suite" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>确定</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- modal for modify case -->
+    <div class="modal hide fade" id="modal-rename-case" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>修改用例名</h3>
+        </div>
+        <div class="modal-body">
+            <div>
+                <input class="input-text-light span5" id="oldCaseName" type="text"
+                       value="" placeholder="旧用例名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-rename-case" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>确定</span>
+            </button>
+        </div>
+    </div>
+    <!-- modal for modify suite -->
+    <div class="modal hide fade" id="modal-rename-suite" role="dialog"
+         aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">x
+            </button>
+            <h3>修改Suite</h3>
+        </div>
+        <div class="modal-body">
+            <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              testsuites
+            </span>
+                <input class="input-text-light span5" id="oldSuiteName" type="text"
+                       value="" placeholder="Suite名称">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <span>取消</span>
+            </button>
+            <button class="btn btn-primary" id="btn-rename-suite" data-dismiss="modal"
+                    aria-hidden="true">
+                <span>确定</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- modal for modify p-suites-tpl -->
+<div class="modal hide fade" id="modal-rename-p-suite-tpl" role="dialog"
+     aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+                aria-hidden="true">x
+        </button>
+        <h3>修改Suite</h3>
+    </div>
+    <div class="modal-body">
+        <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              p-suites-tpl-
+            </span>
+            <input class="input-text-light span5" id="oldPSuiteTplName" type="text"
+                   value="" placeholder="Suite名称">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <span>取消</span>
+        </button>
+        <button class="btn btn-primary" id="btn-rename-psuitetpl" data-dismiss="modal"
+                aria-hidden="true">
+            <span>确定</span>
+        </button>
+    </div>
+</div>
+
+<!-- modal for modify p-suites-tpl -->
+<div class="modal hide fade" id="modal-rename-p-suite" role="dialog"
+     aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+                aria-hidden="true">x
+        </button>
+        <h3>修改Suite</h3>
+    </div>
+    <div class="modal-body">
+        <div class="input-prepend">
+            <span class="add-on-inline dropdown-toggle"
+                  data-toggle="dropdown">
+              p-suites-
+            </span>
+            <input class="input-text-light span5" id="oldPSuiteName" type="text"
+                   value="" placeholder="Suite名称">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <span>取消</span>
+        </button>
+        <button class="btn btn-primary" id="btn-rename-psuite" data-dismiss="modal"
+                aria-hidden="true">
+            <span>确定</span>
+        </button>
+    </div>
+</div>
+
+
+<!-- modal for delete node -->
+<div class="modal hide fade" id="modal-delete-node" role="dialog"
+     aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-body">
+        确认要删除此节点？
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <span>取消</span>
+        </button>
+        <button class="btn btn-danger" id="btn-delete-node" data-dismiss="modal"
+                aria-hidden="true">
+            <span>确定</span>
+        </button>
+    </div>
+</div>
+
+<!-- modal for status -->
+<div class="modal hide fade" id="modal-status" role="dialog"
+     aria-hidden="true">
+    <div class="modal-body">
+        <div id="status">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <span>关闭</span>
+        </button>
+    </div>
+</div>
+
+<!-- jquery -->
+<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/jquery/jquery-ui-1.10.4.custom.min.js"></script>
+<!-- bootstrap -->
+<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js">
+</script>
+<script type="text/javascript"
+        src="assets/bootstrap-modal/js/bootstrap-modalmanager.js">
+</script>
+<script type="text/javascript"
+        src="assets/bootstrap-modal/js/bootstrap-modal.js">
+</script>
+<script type="text/javascript"
+        src="assets/jquery-plugin-placeholder/placeholder.js">
+</script>
+<!-- perfect-scrollbar -->
+<script type="text/javascript"
+        src="assets/perfect-scrollbar/perfect-scrollbar.min.js">
+</script>
+<!-- bignumber -->
+<script type="text/javascript" src="assets/jsoneditor/lib/bignumber/bignumber.min.js">
+</script>
+<!-- jsoneditor -->
+<script type="text/javascript" src="assets/jsoneditor/jsoneditor-min.js">
+</script>
+<!-- ace code editor -->
+<script type="text/javascript" src="assets/jsoneditor/lib/ace/ace-min.js" charset="utf-8">
+</script>
+<!-- json lint -->
+<script type="text/javascript"
+        src="assets/jsoneditor/lib/jsonlint/jsonlint.js">
+</script>
+<!-- -->
+<script type="text/javascript" src="assets/jqTree-0.20.0/tree.jquery.js">
+</script>
+
+<script type="text/javascript" src="assets/zeroclipboard-1.3.5/ZeroClipboard.min.js">
+</script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/dirTree.js"></script>
+<script type="text/javascript" src="assets/multi-select/js/jquery.tinysort.js"></script>
+<script type="text/javascript" src="assets/multi-select/js/jquery.quicksearch.js"></script>
+<script type="text/javascript" src="assets/multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="js/select-modules.js"></script>
+<script type="text/javascript" src="js/parameterized-cases.js"></script>
+</body>
+</html>

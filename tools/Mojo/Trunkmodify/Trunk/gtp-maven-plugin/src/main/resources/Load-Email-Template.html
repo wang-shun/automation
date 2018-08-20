@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>GTP LOAD 测试报告</title>
+    <style type="text/css">
+        body
+        {
+            font-size: .75em;
+            font-family: Verdana, Helvetica, Sans-Serif;
+            margin: 10px;
+            padding: 10px;
+            color: #696969;
+        }
+        .page
+        {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #header
+        {
+            position: relative;
+            margin-bottom: 0px;
+            color: #000;
+            padding: 0;
+        }
+        div#title
+        {
+            display: block;
+            float: left;
+            text-align: left;
+        }
+        #main
+        {
+            padding: 30px 30px 15px 30px;
+            background-color: #FFFFFF;
+            margin-bottom: 30px;
+            _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+        }
+        h1, h2, h3, h4, h5, h6
+        {
+            font-size: 1.5em;
+            color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1
+        {
+            font-size: 2em;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        h2
+        {
+            padding: 0 0 10px 0;
+        }
+        h3
+        {
+            font-size: 1.2em;
+        }
+        table {
+            background-color: #FFFFFF;
+            border-right: solid 1px #e8eef4;
+            border-bottom: solid 1px #e8eef4;
+            width: 98%;
+        }
+
+        table td {
+            padding: 5px;
+            border-left: solid 1px #e8eef4;
+            border-top: solid 1px #e8eef4;
+        }
+
+        table th {
+            padding: 6px 5px;
+            text-align: left;
+            background-color: #e8eef4;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h2>GTP LOAD 测试报告</h2>
+    <hr><br>
+    <table>
+        <tr>
+            <th>运行日志</th>
+            <td>http:///#jenkinsBaseUrl#//job//#ftpJobName#//</td>
+        </tr>
+        <tr>
+            <th>详细日志</th>
+            <td>http:///#linkhost#//testResult/loaddetail//#TaskListGuid#/</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

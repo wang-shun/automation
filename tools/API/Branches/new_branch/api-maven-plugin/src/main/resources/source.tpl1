@@ -1,0 +1,10 @@
+package @packageName@;
+
+import java.util.Map;
+
+import org.testng.annotations.*;
+import com.gome.test.api.testng.*;
+import com.gome.test.context.*;
+import com.gome.test.api.annotation.*;
+
+public class @className@ extends HttpTestContext {

@@ -1,0 +1,8 @@
+package @packageName@;
+
+import java.util.Map;
+
+import org.testng.annotations.*;
+import com.gome.test.api.testng.*;
+
+public class @className@ extends HttpBaseConfig {

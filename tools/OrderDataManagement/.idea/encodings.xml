@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/gome/test/pom/controller/BaseController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/Jsonpath/Json.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/Order/OrderMessage.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/Order/submitOrder.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/cart/BaseCart.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/constant/Constant.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/httpClient/HttpTools.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/httpClient/MhttpClient.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/login/Login.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/publicon/OrderService.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/test/share/Verify.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/img/order-management-system-integration.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/static/img/ordermanagement.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/bootstrap/pomCreate.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/bootstrap/testhider.html" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

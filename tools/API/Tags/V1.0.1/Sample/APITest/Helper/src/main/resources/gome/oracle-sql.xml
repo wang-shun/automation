@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <databases>
+        <database id="Gome.OracleSample">
+            <!-- for Oracle -->
+            <driver_class>oracle.jdbc.driver.OracleDriver</driver_class>
+            <url>jdbc:oracle:thin:@10.126.53.145:31521:gomebbc</url>
+            <username>gomebbc</username>
+            <password>gomebbc,123</password>
+            <sqls>
+                <sql id="query_brand">
+                    select * from TBL_BRAND where Brand_ID=${brandId}
+                </sql>
+            </sqls>
+        </database>
+    </databases>
+</configuration>

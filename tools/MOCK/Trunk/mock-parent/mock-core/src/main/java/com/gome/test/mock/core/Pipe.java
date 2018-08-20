@@ -1,0 +1,209 @@
+package com.gome.test.mock.core;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Executor;
+
+import com.gome.test.mock.core.driver.SimpleDriver;
+import com.gome.test.mock.core.driver.StressDriver;
+import com.gome.test.mock.core.event.CurrentThreadEventExecutor;
+import com.gome.test.mock.core.event.ExecutorFactory;
+import com.gome.test.mock.core.netty.NettySimpleDriver;
+import com.gome.test.mock.core.netty.NettySimpleStub;
+import com.gome.test.mock.core.netty.NettyStressDriver;
+import com.gome.test.mock.core.netty.NettyStressStub;
+import com.gome.test.mock.core.stub.SimpleStub;
+import com.gome.test.mock.core.stub.StressStub;
+
+/**
+ * Pipe is an abstraction, little-like a "two-face man".
+ *
+ * It can be simply understood as a combination of two Channels:
+ *  - one Server-side Channel, which called Stub.
+ *  - one Client-side Channel, which called Driver.
+ *
+ * Pipe can become a network entity, only after creating a Stub or Driver.
+ *
+ *    +--------+     request     +--------+
+ *    |        | --------------+ |        |
+ *    | Client |                 | Server |
+ *    |        | +-------------- |        |
+ *    +--------+     response    +--------+
+ *
+ *                     | |
+ *                     | |
+ *                     | |
+ *                     \ /       +---------------+
+ *                      '        |          Pipe |
+ *    +--------+     request     +------+        |
+ *    |        | --------------+ |      |        |
+ *    | Client |                 | Stub |        |
+ *    |        | +-------------- |      |        |
+ *    +--------+     response    |------+        |
+ *                               +---------------+
+ *
+ *                      and
+ *
+ *   +--------------+
+ *   | Pipe         |
+ *   |       +------+     request     +--------+
+ *   |       |      | --------------+ |        |
+ *   |       |Driver|                 | Server |
+ *   |       |      | +-------------- |        |
+ *   |       +------|     response    +--------+
+ *   +--------------+
+ *
+ *
+ * Pipe是一个抽象概念，有点像是"双面人"，可以简单理解为两个Channel的结合体，
+ * 一个Server端的Channel，即Stub，一个Client端的Channel，即Driver，但是同时只能出现一个。
+ *
+ * Pipe只有在创建出Stub或Driver之后，才能变成实体。
+ *
+ *
+ * @author hannyu
+ *
+ * @param <Q>       Request POJO
+ * @param <R>       Response POJO
+ */
+public abstract class Pipe<Q, R> implements Codec<Q, R>, Filter<Q, R>, Spliter, ExecutorFactory {//工厂
+
+    /**
+     * Create a SimpleStub, for general use, such as Functional-Testing.
+     *
+     * 创建一个SimpleStub，可用于一般使用，如功能测试。
+     *
+     * @param       map
+     * @return
+     */
+    public SimpleStub<Q, R> createSimpleStub(Map<String, String> hostMap) {
+        NettySimpleStub<Q, R> ns = new NettySimpleStub<Q, R>(this);
+        ns.setHostMap(hostMap);
+        return ns;
+    }
+
+    /**
+     * Create a SimpleStub, for general use, such as Functional-Testing.
+     *
+     * 创建一个SimpleStub，可用于一般使用，如功能测试。
+     *
+     * @param       port
+     * @return
+     */
+    public SimpleStub<Q, R> createSimpleStub(String address, int port) {
+        NettySimpleStub<Q, R> ns = new NettySimpleStub<Q, R>(this);
+        ns.setAddress(address);
+        ns.setPort(port);
+        return ns;
+    }
+
+    /**
+     * Create a SimpleStub, for general use, such as Functional-Testing.
+     *
+     * 创建一个SimpleStub，可用于一般使用，如功能测试。
+     *
+     * @param       port
+     * @return
+     */
+    public SimpleStub<Q, R> createSimpleStub(int port) {
+        NettySimpleStub<Q, R> ns = new NettySimpleStub<Q, R>(this);
+        ns.setPort(port);
+        return ns;
+    }
+
+    /**
+     * Create a SimpleStub, for general use, such as Functional-Testing.
+     *
+     * 创建一个SimpleStub，可用于一般使用，如功能测试。
+     *
+     * @param
+     * @return
+     */
+    public SimpleStub<Q, R> createSimpleStub() {
+        NettySimpleStub<Q, R> ns = new NettySimpleStub<Q, R>(this);
+        return ns;
+    }
+
+    /**
+     * Create a SimpleDriver, for general use, such as Functional-Testing.
+     *
+     * 创建一个SimpleDriver，可用于一般使用，如功能测试。
+     *
+     * @param       addr
+     * @param       port
+     * @return
+     */
+    public SimpleDriver<Q, R> createSimpleDriver(String addr, int port) {
+        NettySimpleDriver<Q, R> driver = new NettySimpleDriver<Q, R>(this);
+        driver.setAddr(addr);
+        driver.setPort(port);
+        return driver;
+    }
+
+    /**
+     * Create a StressDriver, which can be used for Performance-Testing.
+     *
+     * 创建一个StressDriver，可用于性能测试。
+     *
+     * @param       addr
+     * @param       port
+     * @return
+     */
+    public StressDriver<Q, R> createStressDriver(String addr, int port) {
+        NettyStressDriver<Q, R> driver = new NettyStressDriver<Q, R>(this);
+        driver.setAddr(addr);
+        driver.setPort(port);
+        return driver;
+    }
+
+    /**
+     * Create a StressStub, which can be used for Performance-Testing.
+     *
+     * 创建一个StressStub，可用于压力测试。
+     *
+     * @param       port
+     * @return
+     */
+    public StressStub<Q, R> createStressStub(int port) {
+        NettyStressStub<Q, R> stub = new NettyStressStub<Q, R>(this);
+        stub.setPort(port);
+        return stub;
+    }
+
+    @Override
+    public boolean filterReceivedInStub(HandlerContext<R, Q> ctx, Message<Q> msg) {
+        return false;
+    }
+
+    @Override
+    public boolean filterReceivedInDriver(HandlerContext<Q, R> ctx, Message<R> msg) {
+        return false;
+    }
+
+    /**
+     * 适用于pipeline的数据包，避免多线程同时读取。
+     *
+     * 注: 只是把划好的包分出来，未划分完整的包不要输出。
+     * 另注: 要跟 executor() 结合起来使用。
+     *
+     * @param buf
+     * @return
+     */
+    @Override
+    public List<Buffer> split(Buffer buf) {
+        //      return new Buffer[0];
+
+        //        Buffer[] bufs = new Buffer[1];
+        //        bufs[0] = buf;
+        //        return bufs;
+
+        List<Buffer> bufs = new ArrayList<Buffer>(1);
+        bufs.add(buf);
+        return bufs;
+    }
+
+    @Override
+    public Executor newExecutor() {
+        return new CurrentThreadEventExecutor();
+    }
+}

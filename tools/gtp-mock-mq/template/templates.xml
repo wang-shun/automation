@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<treenode>
+	<treeid>
+		<value>002002001</value>
+		<value>003002001</value>
+	</treeid>
+     <node>
+		<value>正向_预留成功</value>
+        <value>DH_订单异常</value>
+        <value>正向_PP_分配</value>
+        <value>正向_LAC_送至派工</value>
+        <value>正向_AC_派工</value>
+        <value>正向_EX_出库</value>
+        <value>正向_PDL_回执</value>
+        <value>正向_BL_集团妥投</value>
+        <value>正向_RT_拒收返回大库</value>
+        <value>逆向_RAP_退货订单被接收</value>
+        <value>逆向_RCP_退货订单完成</value>
+        <value>逆向_BL_集团妥投</value>
+        <value>逆向_预留</value>
+        <value>逆向_派工</value>
+        <value>逆向_回执</value>
+		<value>订单状态(全报文)</value>
+        <value>3C在线-正向_预留成功</value>
+        <value>3C在线-DH_订单异常</value>
+        <value>3C在线-正向_PP_分配</value>
+        <value>3C在线-正向_SC_集团出库</value>
+        <value>3C在线-正向_PDL_回执</value>
+        <value>3C在线-正向_BL_集团妥投</value>
+        <value>3C在线-逆向_ROA_发票审核通过</value>
+        <value>3C在线-正向_RT_拒收返回大库</value>
+        <value>3C在线-逆向_RAP_退货订单被接收</value>
+        <value>3C在线-逆向_RCP_退货订单完成</value>
+        <value>3C在线-逆向_BL_集团妥投</value>
+
+    </node>
+</treenode>
+</root>

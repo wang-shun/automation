@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <databases>
+        <database id="Gome.MysqlSample">
+            <!-- for mysql -->
+            <driver_class>com.mysql.jdbc.Driver</driver_class>
+            <url>jdbc:mysql://10.126.45.38:3306/gomepop</url>
+            <username>gomepop</username>
+            <password>gomepop_pass</password>
+        </database>
+    </databases>
+</configuration>

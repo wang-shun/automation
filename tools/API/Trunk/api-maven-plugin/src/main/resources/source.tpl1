@@ -1,0 +1,10 @@
+package @packageName@;
+
+import java.util.Map;
+
+import org.testng.annotations.*;
+import com.ofo.test.api.testng.*;
+import com.ofo.test.context.*;
+import com.ofo.test.api.annotation.*;
+
+public class @className@ extends HttpTestContext {

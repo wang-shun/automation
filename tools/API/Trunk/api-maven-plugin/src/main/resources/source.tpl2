@@ -1,0 +1,20 @@
+
+    /**
+     * @caseName@
+     * @author @owner@
+     */
+    @Test(
+        description="@caseName@",
+        dataProvider="@method@",
+        timeOut=@timeout@
+    )
+    @CaseOwner(description="@owner@")
+    public void @method@(Map<String, String> kvs) throws Exception {
+        this.addToContext("CASE_ID",
+                "@method@");
+        this.getMessageClient().run(kvs);
+    }
+
+    @DataProvider(name="@method@")
+    private Object[][] @method@DataProvider() throws Exception {
+        return new Object[][] {

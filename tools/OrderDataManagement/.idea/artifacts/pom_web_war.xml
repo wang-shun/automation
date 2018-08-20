@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="pom_web:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ssm_project-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="pom_web:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.3" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.3" />
+          <element id="library" level="project" name="Maven: net.minidev:json-smart:2.2.1" />
+          <element id="library" level="project" name="Maven: net.minidev:accessors-smart:1.1" />
+          <element id="library" level="project" name="Maven: com.jayway.jsonpath:json-path:2.0.0" />
+          <element id="library" level="project" name="Maven: com.jayway.jsonpath:json-path-assert:2.0.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

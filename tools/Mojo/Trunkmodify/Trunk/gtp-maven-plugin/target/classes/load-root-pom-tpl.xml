@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>example</artifactId>
+    <groupId>com.lazerycode.jmeter</groupId>
+    <version>1.9.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>ExecuteTest</module>
+    </modules>
+    <!--来自 GenLoadConfMojo 的 load-root-pom-tpl.xml-->
+    <properties>
+        <!--执行报告结果路径-->
+        <reports-path>${project.build.directory}${file.separator}results</reports-path>
+        <!--数据库配置路径-->
+        <sqlconfigDir>${basedir}${file.separator}sqlconf${file.separator}api.xml</sqlconfigDir>
+        <!-- SVN 下载用例地址路径 -->
+        <script-path>${basedir}${file.separator}src${file.separator}test${file.separator}jmeter${file.separator}scripts</script-path>
+        <!-- 配置需要加载 jar 路径 -->
+        <search_paths>${basedir}${file.separator}lib</search_paths>
+        <!-- 配置需要加载 jmxPath 路径 -->
+        <jmxPath>${basedir}${file.separator}jmxs.xml</jmxPath>
+        <!-- 配置需要加载 userPath 路径 -->
+        <userPath>${basedir}${file.separator}user.xml</userPath>
+        <!-- 配置需要加载 argsPath 路径 -->
+        <argsPath>${basedir}${file.separator}args.xml</argsPath>
+        <environment>ENV</environment>
+    </properties>
+</project>

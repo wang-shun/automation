@@ -1,0 +1,16 @@
+## YAML Template.
+
+spring:
+    view:
+        prefix: /
+        suffix: .jsp
+
+#Server
+server:
+    port: 8077
+    address: 127.0.0.1
+
+cd:
+  root:
+    nodeId: 0
+

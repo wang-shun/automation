@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<xml fileName="gome/mysql-db.xml" delimiterParsingDisabled="true"/>
+	<xml fileName="gome/mysql-sql.xml" delimiterParsingDisabled="true"/>
+	<xml fileName="gome/oracle-sql.xml" delimiterParsingDisabled="true"/>
+</configuration>

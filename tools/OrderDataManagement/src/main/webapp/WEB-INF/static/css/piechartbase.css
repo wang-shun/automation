@@ -1,0 +1,78 @@
+/*body {*/
+	/*background-color: #E3E8EB;*/
+/*}*/
+
+
+
+#pieChartTotal {
+	width: 420px;
+	height: 290px;
+	font-size: 14px;
+}
+
+
+/*
+FLOT CANVAS CHART ATTRIBUTES
+Note: Attributes must be flagged as !important, otherwise chart's inline attributes will supersede these
+*/
+
+#pieChartTotal .flot-base,
+#pieChartTotal .flot-overlay {
+	top: -50px !important;
+	left: -15px !important;
+}
+
+#pieChartTotal div.legend table tbody tr .legendColorBox div {
+	border-width: 0 !important;
+	padding-bottom: 27px !important;
+}
+
+#pieChartTotal div.legend table tbody tr .legendColorBox div div {
+	border-width: 11px 9px 11px 9px !important;
+	border-radius: 2px !important;
+	padding: 0 !important;
+}
+
+#pieChartTotal div.legend table tbody tr .legendLabel div {
+	padding-bottom: 5px !important;
+}
+
+/**
+ first page chart show.
+*/
+
+#fistPageTotalresponse{
+    padding: 40px 50px;
+    background-color: #FFFFFF;
+}
+#pieChartFP {
+    width: 420px;
+    height: 290px;
+    font-size: 14px;
+}
+
+/*
+FLOT CANVAS CHART ATTRIBUTES
+Note: Attributes must be flagged as !important, otherwise chart's inline attributes will supersede these
+*/
+
+#pieChartFP .flot-base,
+#pieChartFP .flot-overlay {
+    top: -50px !important;
+    left: -15px !important;
+}
+
+#pieChartFP div.legend table tbody tr .legendColorBox div {
+    border-width: 0 !important;
+    padding-bottom: 27px !important;
+}
+
+#pieChartFP div.legend table tbody tr .legendColorBox div div {
+    border-width: 11px 9px 11px 9px !important;
+    border-radius: 2px !important;
+    padding: 0 !important;
+}
+
+#pieChartFP div.legend table tbody tr .legendLabel div {
+    padding-bottom: 5px !important;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<node id="001" label="API" pid="0"  value="getAPI" type="classtree" url="/api" loadOnDemand="true" ></node>
+	<node id="002" label="Host" pid="0" value="getHost" type="classtree" url="/host" loadOnDemand="true"></node>
+	<node id="003" label="Port" pid="0" value="getPort" type="classtree" url="/port" loadOnDemand="true"></node>
+	<node id="004" label="Template" pid="0" value="getTemplate" type="classtree" url="/template" loadOnDemand="true"></node>
+	<node id="005" label="Log" pid="0"  value="getChild" type="classtree" url="" loadOnDemand="fasle"></node>
+	<node id="005001" label="GET LOG" pid="005" value="getLog" type="nodetree" url="/log/search" loadOnDemand="false"></node>
+</root>

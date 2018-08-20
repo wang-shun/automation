@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <import resource="spring-job.xml"/>
+    <import resource="mailInfo.xml"/>
+    <dubbo:application name="order-provider" owner="programmer" organization="dubbox"/>
+
+    <dubbo:registry address="zookeeper://10.126.57.2:2181"/>
+    <!--<dubbo:registry address="zookeeper://127.0.0.1:2181"/>-->
+    <!--<dubbo:protocol name="dubbo" serialization="kryo" optimizer="yjmyzz.dubbo.demo.api.SerializationOptimizerImpl"/>-->
+
+    <!-- use tomcat server -->
+    <dubbo:protocol name="rest" port="9999" threads="50" contextpath="services" server="tomcat" accepts="50"
+                    extension="com.alibaba.dubbo.rpc.protocol.rest.support.LoggingFilter"/>
+
+
+    <dubbo:service interface="com.gome.test.order.process.OrderService" ref="orderService" protocol="dubbo"/>
+    <dubbo:service interface="com.gome.test.order.process.OrderRestService" ref="orderRestService" protocol="rest"
+                   validation="true"/>
+
+    <dubbo:service interface="com.gome.test.order.process.G3PPOrderService" ref="G3ppOrderService" protocol="dubbo"/>
+    <dubbo:service interface="com.gome.test.order.process.G3PPOrderRestfulService" ref="G3pporderRestService" protocol="rest"
+                   validation="true"/>
+
+    <bean id="orderRestService" class="com.gome.test.order.process.OrderRestServiceImpl">
+        <property name="orderService" ref="orderService"/>
+    </bean>
+    <bean id="G3pporderRestService" class="com.gome.test.order.process.G3PPOrderRestServiceImlp">
+        <property name="orderService" ref="G3ppOrderService"/>
+    </bean>
+
+
+    <bean id="orderService" class="com.gome.test.order.process.OrderProcessServiceImpl"/>
+    <bean id="G3ppOrderService" class="com.gome.test.order.process.G3PPOrderProcessServiceImpl"/>
+
+
+
+    <bean id="orderServicetest" class="gyoung.dubbo.demo.provider.OrderServiceImpl"/>
+
+
+
+
+    <dubbo:service interface="com.gome.test.order.process.OrderConfirmService" ref="orderConfirmService" protocol="dubbo"/>
+    <bean id="orderRestConfirmService" class="com.gome.test.order.process.OrderRestConfirmServiceImpl">
+        <property name="orderConfirmService" ref="orderConfirmService"/>
+    </bean>
+    <dubbo:service interface="com.gome.test.order.process.OrderRestConfirmService" ref="orderRestConfirmService" protocol="rest"
+                   validation="true"/>
+
+    <bean id="orderConfirmService" class="com.gome.test.order.process.OrderProcessConfirmServiceImpl"/>
+
+
+</beans>

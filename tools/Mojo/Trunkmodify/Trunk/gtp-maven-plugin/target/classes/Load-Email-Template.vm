@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>GTP LOAD 测试报告</title>
+    <style type="text/css">
+        body {
+            font-size: .75em;
+            font-family: Verdana, Helvetica, Sans-Serif;
+            margin: 10px;
+            padding: 10px;
+            color: #696969;
+        }
+
+        .page {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #header {
+            position: relative;
+            margin-bottom: 0px;
+            color: #000;
+            padding: 0;
+        }
+
+        div#title {
+            display: block;
+            float: left;
+            text-align: left;
+        }
+
+        #main {
+            padding: 30px 30px 15px 30px;
+            background-color: #FFFFFF;
+            margin-bottom: 30px;
+            _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 1.5em;
+            color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            font-size: 2em;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        h2 {
+            padding: 0 0 10px 0;
+        }
+
+        h3 {
+            font-size: 1.2em;
+        }
+
+        table {
+            background-color: #FFFFFF;
+            border-right: solid 1px #e8eef4;
+            border-bottom: solid 1px #e8eef4;
+            width: 98%;
+        }
+
+        table td {
+            padding: 5px;
+            border-left: solid 1px #e8eef4;
+            border-top: solid 1px #e8eef4;
+        }
+
+        table th {
+            padding: 6px 5px;
+            text-align: left;
+            background-color: #e8eef4;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h2>GTP LOAD 测试报告</h2>
+    <hr>
+    <br>
+    <table>
+        <tr>
+            <th>总数</th>
+            <th>成功</th>
+            <th>失败</th>
+            <th colspan="2">开始时间</th>
+            <th colspan="2">结束时间</th>
+            <th colspan="3">耗时(ms)</th>
+        </tr>
+        <tr>
+            <td>$taskLoadReport.total</td>
+            <td>$taskLoadReport.pass</td>
+            <td>$taskLoadReport.fail</td>
+            <td colspan="2">$util.long2String($taskLoadReport.startTime)</td>
+            <td colspan="2">$util.long2String($taskLoadReport.endTime)</td>
+            <td colspan="3">$taskLoadReport.duration</td>
+        </tr>
+        <tr>
+            <th>场景</th>
+            <th>标签</th>
+            <th>小场景</th>
+            <th>结果版本</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>总数</th>
+            <th>成功</th>
+            <th>失败</th>
+            <th>耗时(ms)</th>
+        </tr>
+        #foreach($logDetail in $taskLoadReport.loadLogDetails)
+            <tr>
+                <td>$logDetail.sceneName</td>
+                #if($logDetail.labelName == "\$logDetail.labelName")
+                    <td></td>
+                #else
+                    <td>$logDetail.labelName</td>
+                #end
+                <td>$logDetail.smallSceneName</td>
+                <td>$logDetail.resultVersion</td>
+                #if($null.isNull($logDetail.startTime))
+                    <td></td>
+                #else
+                    <td>$util.long2String($logDetail.startTime)</td>
+                #end
+                #if($null.isNull($logDetail.endTime))
+                    <td></td>
+                #else
+                    <td>$util.long2String($logDetail.endTime)</td>
+                #end
+                <td>$logDetail.total</td>
+                <td>$logDetail.success</td>
+                <td>$logDetail.error</td>
+                <td>$logDetail.duration</td>
+            </tr>
+        #end
+        <tr>
+            <th>日志地址</th>
+            <td colspan="9">$loadFtpUrl</td>
+        </tr>
+        #if($taskLoadReport.errorMessage != "")
+        <tr>
+            <th>错误信息</th>
+            <td>
+                <pre style="height: 150px;">$taskLoadReport.errorMessage</pre>
+            </td>
+        </tr>
+        #end
+
+        <tr>
+            <th>详细日志</th>
+            <td>$loadLogDetailUrl</td>
+        </tr>
+        <tr>
+            <th>运行日志</th>
+            <td>$loadJenkinsUrl</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

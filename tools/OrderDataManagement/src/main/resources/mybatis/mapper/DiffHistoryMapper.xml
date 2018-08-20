@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gome.test.difftool.dao.DiffDAO">
+
+    <resultMap id="detailInfo" type="com.gome.test.difftool.domain.DiffDetail">
+        <result property="term" column="term"/>
+        <result property="srcVersion" column="srcVersion"/>
+        <result property="dictVersion" column="dictVersion"/>
+        <result property="similarRate" column="similarRate"/>
+        <result property="rateTotal" column="rateTotal"/>
+        <result property="rateFPTotal" column="rateFPTotal"/>
+    </resultMap>
+
+    <!-- get all diff version data from db.-->
+    <select id="getDiffByVersion" resultMap="detailInfo" >
+       select
+       term,
+       srcVersion ,
+       dictVersion ,
+       rateTotal ,
+       rateFPTotal
+      from diffhistories
+      left join  baseTerm
+      on diffhistories.termId= baseTerm.kid
+      where dictVersion=#{destVersion}
+      and srcversion=#{srcVersion}
+      order by rateTotal DESC
+    </select>
+
+    <select id="getDiffByVersionGreatFilter" resultMap="detailInfo" >
+        select
+        term,
+        srcVersion ,
+        dictVersion ,
+        rateTotal ,
+        rateFPTotal
+        from diffhistories
+        left join  baseTerm
+        on diffhistories.termId= baseTerm.kid
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        <if test="total != null and total &gt;0">
+            AND rateTotal &gt;= #{total}
+        </if>
+        <if test="total != null and total &lt;0">
+            AND rateTotal &lt;= ABS(#{total})
+        </if>
+
+        <if test="ftTotal != null and ftTotal &gt;0" >
+            AND rateFPTotal &gt;= #{ftTotal}
+        </if>
+        <if test="ftTotal != null and ftTotal &lt;0">
+            AND rateFPTotal &lt;= ABS(#{ftTotal})
+        </if>
+        order by rateTotal DESC
+    </select>
+
+    <select id="getMaxSrcVersion" resultType="string">
+        select max(srcversion)
+        from diffhistories
+    </select>
+
+    <select id="getMaxdictVersion" resultType="string">
+        select  max(dictVersion)
+        from diffhistories
+    </select>
+    <!--modify filter the data less a rate.-->
+    <select id="getTotalNumberByFilterTotalRate" resultType="int">
+        select
+      count(0)
+      from diffhistories
+      where dictVersion=#{destVersion}
+      and srcversion=#{srcVersion}
+      and rateTotal &lt;=#{totalRate}
+    </select>
+
+    <select id="getTotalNumberByFilterTotalRateUp" resultType="int">
+        select
+        count(0)
+        from diffhistories
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and rateTotal &gt;#{totalRate}
+    </select>
+
+    <!--modify filter the data less a rate.-->
+    <select id="getTotalNumberByFilterFPRate" resultType="int">
+        select
+        count(0)
+        from diffhistories
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and rateFPTotal &lt;=#{fpRate}
+    </select>
+
+    <select id="getTotalNumberByFilterFPRateUp" resultType="int">
+        select
+        count(0)
+        from diffhistories
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and rateFPTotal &gt;#{fpRate}
+    </select>
+    <select id="getTotalNumberByFilterTotalRateRange" resultType="int">
+        select
+        count(0)
+        from diffhistories
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and rateTotal &lt;=#{totalRatelMore}
+        and rateTotal &gt;#{totalRatelLess}
+    </select>
+
+    <select id="getTotalNumberByFilterFPRateRange" resultType="int">
+        select
+        count(0)
+        from diffhistories
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and rateFPTotal &lt;=#{fptotalRatelMore}
+        and rateFPTotal &gt;#{fptotalRatelLess}
+    </select>
+
+
+
+    <!--<select id="getDiffByVersionLessFilter" resultMap="detailInfo" >-->
+        <!--select-->
+        <!--term,-->
+        <!--srcVersion ,-->
+        <!--dictVersion ,-->
+        <!--rateTotal ,-->
+        <!--rateFPTotal-->
+        <!--from diffhistories-->
+        <!--left join  baseTerm-->
+        <!--on diffhistories.termId= baseTerm.kid-->
+        <!--where dictVersion=#{destVersion}-->
+        <!--and srcversion=#{srcVersion}-->
+        <!--<if test="total != null and total !=''">-->
+            <!--AND rateTotal &lt;= #{total}-->
+        <!--</if>-->
+        <!--<if test="ftTotal != null and ftTotal !=''">-->
+            <!--AND rateFPTotal &lt;= #{ftTotal}-->
+        <!--</if>-->
+        <!--order by rateTotal DESC-->
+    <!--</select>-->
+
+    <!-- get  diff version data after filter rateTotal from db.-->
+    <select id="getDiffUpTotal" resultMap="detailInfo" >
+        select
+        term,
+        srcVersion ,
+        dictVersion ,
+        rateTotal ,
+        rateFPTotal
+        from diffhistories
+        left join  baseTerm
+        on diffhistories.termId= baseTerm.kid
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and   rateTotal &gt; #{rateTotal}
+        order by rateTotal DESC
+    </select>
+
+    <!-- get  diff version data after filter rateTotal from db.-->
+    <select id="getDiffDownTotal" resultMap="detailInfo" >
+        select
+        term,
+        srcVersion ,
+        dictVersion ,
+        rateTotal ,
+        rateFPTotal
+        from diffhistories
+        left join  baseTerm
+        on diffhistories.termId= baseTerm.kid
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and   rateTotal &lt;= #{rateTotal}
+        order by rateTotal DESC
+    </select>
+
+    <!-- get  diff version data after filter rateFPTotal from db.-->
+    <select id="getDiffUpFPTotal" resultMap="detailInfo" >
+        select
+        term,
+        srcVersion ,
+        dictVersion ,
+        rateTotal ,
+        rateFPTotal
+        from diffhistories
+        left join  baseTerm
+        on diffhistories.termId= baseTerm.kid
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and   rateFPTotal &gt;#{rateFPTotal}
+        order by rateTotal DESC
+    </select>
+
+    <!-- get  diff version data after filter rateFPTotal from db.-->
+    <select id="getDiffDownFPTotal" resultMap="detailInfo" >
+        select
+        term,
+        srcVersion ,
+        dictVersion ,
+        rateTotal ,
+        rateFPTotal
+        from diffhistories
+        left join  baseTerm
+        on diffhistories.termId= baseTerm.kid
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and   rateFPTotal &lt;= #{rateFPTotal}
+        order by rateFPTotal DESC
+    </select>
+
+    <!-- get  diff version data after filter rateFPTotal from db.-->
+    <select id="getDiffNormalFPTotal" resultMap="detailInfo" >
+        select
+        term,
+        srcVersion ,
+        dictVersion ,
+        rateTotal ,
+        rateFPTotal
+        from diffhistories
+        left join  baseTerm
+        on diffhistories.termId= baseTerm.kid
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and   rateFPTotal &lt;= #{rateFPTotalMore}
+        and   rateFPTotal &gt; #{rateFPTotalLess}
+        order by rateFPTotal ASC
+    </select>
+    <!-- get  diff version data after filter rateTotal from db.-->
+    <select id="getDiffNormalTotal" resultMap="detailInfo" >
+        select
+        term,
+        srcVersion ,
+        dictVersion ,
+        rateTotal ,
+        rateFPTotal
+        from diffhistories
+        left join  baseTerm
+        on diffhistories.termId= baseTerm.kid
+        where dictVersion=#{destVersion}
+        and srcversion=#{srcVersion}
+        and   rateTotal &lt;= #{rateTotalMore}
+        and   rateTotal &gt; #{rateTotalLess}
+        order by rateTotal ASC
+    </select>
+
+</mapper>

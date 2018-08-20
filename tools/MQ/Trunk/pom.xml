@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.2.0.RELEASE</version>
+	</parent>
+
+    <groupId>com.gome.test.mq</groupId>
+    <artifactId>mq-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <description>mq父包</description>
+
+    <!--子模块-->
+    <modules>
+
+        <module>mq-domain</module>
+	    <module>mq-web</module>
+    </modules>
+
+    <!-- 依赖库版本定义 -->
+    <properties>
+        <mq.version>0.0.1-SNAPSHOT</mq.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 设定团队持续集成发布包服务器 -->
+    <distributionManagement>
+        <repository>
+            <id>TestReleases</id>
+                <url>http://maven.ds.gome.com.cn/nexus/content/repositories/TestReleases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>TestSnapshots</id>
+            <url>http://maven.ds.gome.com.cn/nexus/content/repositories/TestSnapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

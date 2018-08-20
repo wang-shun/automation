@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/api.iml" filepath="$PROJECT_DIR$/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-common/api-common.iml" filepath="$PROJECT_DIR$/api-common/api-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-helper-parent/api-helper-parent.iml" filepath="$PROJECT_DIR$/api-helper-parent/api-helper-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-maven-plugin/api-maven-plugin.iml" filepath="$PROJECT_DIR$/api-maven-plugin/api-maven-plugin.iml" />
+    </modules>
+  </component>
+</project>

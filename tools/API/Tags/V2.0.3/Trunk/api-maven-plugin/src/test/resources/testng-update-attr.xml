@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="suite_name">
+    <test name="test_name">
+        <classes/>
+    </test>
+</suite>

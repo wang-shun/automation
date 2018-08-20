@@ -1,0 +1,16 @@
+.filter_table {
+    /*padding: 10px;*/
+    /*width: 100%;*/
+}
+.filter_table td {
+    padding-top:5px;
+}
+.filter_div {
+    margin: auto;
+    /*margin-top: 20px;*/
+    width: 100%
+}
+
+.task-operation-div > ul {
+    text-align: center;
+}
